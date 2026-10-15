@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic'; // Prevents Next.js 16 build-time prerender checks
 
 interface BlogPageProps {
   params: Promise<{
