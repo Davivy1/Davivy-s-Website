@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { createClient } from '../../../../lib/supabase/server';
 import { ArrowLeft } from 'lucide-react';
 
+export async function generateStaticParams() {
+  return []; // Next.js will render slugs on demand at runtime
+}
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const supabase = await createClient();
