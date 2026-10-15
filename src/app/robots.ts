@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://yourdomain.com/sitemap.xml', // Replace with your domain
+    sitemap: 'https://davivy-s-website.vercel.app/sitemap.xml', // Replace with your domain
   };
 }
