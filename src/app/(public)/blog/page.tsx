@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { createClient } from '../../../lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { ArrowRight, BookOpen } from 'lucide-react';
+
+export const dynamic = 'force-dynamic'; // Bypasses static prerendering checks
 
 export default async function BlogPage() {
   const supabase = await createClient();
@@ -14,11 +15,7 @@ export default async function BlogPage() {
   return (
     <div className="w-full min-h-screen bg-black text-white pt-12 pb-24 px-6 md:px-14">
       <div className="max-w-7xl mx-auto">
-        
         <div className="text-center max-w-2xl mx-auto mb-16">
-          {/*<span className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400 border border-zinc-800 px-4 py-2 rounded-full">
-            Articles & Thoughts
-          </span>*/}
           <h1 className="font-serif text-4xl md:text-6xl font-extrabold tracking-tight text-white mt-6 mb-4">
             Davivy's Blog
           </h1>
@@ -41,10 +38,8 @@ export default async function BlogPage() {
                 className="bg-zinc-950 border border-zinc-800/80 rounded-xl overflow-hidden flex flex-col justify-between hover:border-zinc-500 transition-all group"
               >
                 <div>
-                  {/* COVER IMAGE */}
                   {post.cover_image && (
                     <div className="relative w-full h-48 bg-zinc-900 border-b border-zinc-800/80 overflow-hidden">
-                      {/* Standard img tag avoids Next Image domain strictness for random external web URLs */}
                       <img
                         src={post.cover_image}
                         alt={post.title}
@@ -55,7 +50,7 @@ export default async function BlogPage() {
 
                   <div className="p-6">
                     <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider block mb-3">
-                      {new Date(post.created_at).toLocaleDateString()}
+                      {post.created_at ? post.created_at.split('T')[0] : ''}
                     </span>
                     <h2 className="font-serif text-xl font-bold text-white mb-3 group-hover:text-zinc-200 transition-colors">
                       {post.title}
@@ -75,7 +70,6 @@ export default async function BlogPage() {
             ))}
           </div>
         )}
-
       </div>
     </div>
   );
