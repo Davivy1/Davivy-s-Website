@@ -1,10 +1,17 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { FaLinkedin, FaSpotify, FaYoutube, FaInstagram, FaFacebook, FaGithub, FaTiktok, FaTwitter } from 'react-icons/fa6';
+import { FaLinkedin, FaSpotify, FaYoutube, FaInstagram } from 'react-icons/fa6';
 
 export default function Footer() {
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="w-full bg-zinc-950 border-t border-zinc-800/80 text-zinc-400 py-12 px-6 md:px-14">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -18,7 +25,7 @@ export default function Footer() {
             Artist, Content Creator, and Tech Educator blending creative expression with digital innovation.
           </p>
           <p className="text-xs text-zinc-500 pt-2">
-            &copy; {new Date().getFullYear()} David Ibekwe. All rights reserved.
+            &copy; {year ?? '2026'} David Ibekwe. All rights reserved.
           </p>
         </div>
 
@@ -99,30 +106,6 @@ export default function Footer() {
             >
               <FaInstagram className="text-sm" /> Instagram
             </a>
-            <a 
-              href="https://www.facebook.com/dave.ibekwe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-white transition-colors"
-            >
-              <FaFacebook className="text-sm" /> Facebook
-            </a>
-            <a 
-              href="https://x.com/DavidIbekw66411"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-white transition-colors"
-            >
-              <FaTwitter className="text-sm" /> Twitter
-            </a>
-            <a 
-            href="https://github.com/Davivy1" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-white transition-colors"
-          >
-            <FaGithub className="text-sm" /> GitHub
-          </a>
           </div>
         </div>
 
